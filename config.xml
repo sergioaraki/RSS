@@ -1,0 +1,14 @@
+<widget xmlns:rim="http://www.blackberry.com/ns/widgets" id="rss" version="1.0.0.1" rim:header="RIM-Widget:rim/widget" xmlns="http://www.w3.org/ns/widgets">
+  <rim:navigation mode="focus" />
+  <name>RSS</name>
+  <description>RSS</description>
+  <author href="https://twitter.com/arakisergio">Sergio Araki</author>
+  <icon src="img\icono.jpg" />
+  <icon src="img\icono.jpg" rim:hover="true" />
+  <rim:splash src="img\bb10-splash-landscape.png" />
+  <rim:splash src="img\bb10-splash-portrait.png" />
+  <content src="index.html" />
+  <access uri="http://feedburner.com" subdomains="true" />
+  <feature id="blackberry.app" />
+  <feature id="blackberry.invoke" />
+</widget>

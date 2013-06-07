@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html> 
+	<head>
+		<link  rel="stylesheet" type="text/css" href="css/bbui-min.css"></link>
+		<script type="text/javascript" src="js/bbui-min.js"></script>
+		<script type="text/javascript" src="local:///chrome/webworks.js"></script>
+		<script type="text/javascript" src="js/zepto.min.js"></script>
+		<script type="text/javascript" src="js/rss.js"></script>
+		<script type="text/javascript">
+			var webworksreadyFired = false,
+				darkColoring = false,
+				darkScreenColor = 'black';
+				
+			document.addEventListener('webworksready', function(e) {
+				// This is code to ensure that if webworksready is fired multiple times we still only init() one time
+				if (webworksreadyFired) return;
+				webworksreadyFired = true;
+
+				var config;
+				// Toggle our coloring for testing 
+				if (darkColoring) {
+					config = {controlsDark: true,
+							listsDark: true};
+				} else {
+					config = {controlsDark: false,
+							listsDark: false,
+							coloredTitleBar: true};
+				}
+				
+				// Handle styling of the screen before it is displayed
+				config.onscreenready = function(element, id, params) {
+											if (darkColoring) {
+												var screen = element.querySelector('[data-bb-type=screen]');
+												if (screen) {
+													screen.style['background-color'] = darkScreenColor;
+												}
+											}
+											if (id === 'rss') {
+												leerRSS(element, params);
+											}
+										};
+				
+				// You must call init on bbUI before any other code loads.  
+				// If you want default functionality simply don't pass any parameters.. bb.init();
+				bb.init(config);
+				if (darkColoring) {
+					document.body.style['background-color'] = darkScreenColor;
+					document.body.style['color'] = 'white';
+				}
+				bb.pushScreen('menu.html', 'menu');
+			}, false);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
